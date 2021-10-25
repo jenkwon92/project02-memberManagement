@@ -2,13 +2,13 @@ feat/pm : 역할분담
 front-end-html :html업무
 front-end-css :css업무
 
-feat/find-member-by-id
-feat/regist
-feat/id-check
-feat/log-in
-feat/log-out
-feat/find-member-list
-feat/update
+feat/back-end/find-member-by-id
+feat/back-end/regist
+feat/back-end/id-check
+feat/back-end/log-in
+feat/back-end/log-out
+feat/back-end/find-member-list
+feat/back-end/update
 
 1.  feat/find-member-by-id
 비로그인 상태에서 회원아이디로 회원정보를 검색할 수 있다 ( 이름 , 주소 ) 
