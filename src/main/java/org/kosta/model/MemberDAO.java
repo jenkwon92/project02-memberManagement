@@ -1,6 +1,7 @@
 package org.kosta.model;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,5 +26,28 @@ public class MemberDAO {
 		if(rs!=null)
 			rs.close();
 		closeAll(pstmt, con);
+	}
+	
+	public MemberVO login(String id, String password) throws SQLException {
+		MemberVO vo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = DriverManager.getConnection(url,username,userpass);
+			StringBuilder sql = new StringBuilder("SELECT name,address ");
+			sql.append("FROM member WHERE id=? AND password=?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			rs =pstmt.executeQuery();
+			if(rs.next()) {
+				vo = new MemberVO(id,password,rs.getString(1),rs.getString(2));
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return vo;
 	}
 }
